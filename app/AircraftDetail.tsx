@@ -76,9 +76,17 @@ export default function AircraftDetail() {
             </div>
             <div className="space-y-8">
               <h2 className="text-3xl font-bold tracking-tight">Interior Gallery</h2>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="aspect-video rounded-3xl overflow-hidden shadow-lg bg-gray-100" />
-                <div className="aspect-video rounded-3xl overflow-hidden shadow-lg bg-gray-100" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {aircraft.gallery.length > 0 ? aircraft.gallery.map((img, i) => (
+                  <div key={i} className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+                    <img src={img} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt={`${aircraft.name} interior ${i + 1}`} />
+                  </div>
+                )) : (
+                  <>
+                    <div className="aspect-video rounded-2xl bg-gray-100" />
+                    <div className="aspect-video rounded-2xl bg-gray-100" />
+                  </>
+                )}
               </div>
             </div>
           </div>

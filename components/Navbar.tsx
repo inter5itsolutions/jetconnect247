@@ -9,6 +9,7 @@ const navLinks = [
   { name: 'Fleet', path: '/fleet' },
   { name: 'Services', path: '/services' },
   { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export default function Navbar() {
@@ -41,7 +42,7 @@ export default function Navbar() {
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12 shadow-sm',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm'
             : isHome
@@ -87,11 +88,11 @@ export default function Navbar() {
                   isActive
                     ? cn(
                         'text-brand-silver-blue',
-                        atTop && isHome ? 'bg-white/10 text-white' : 'bg-brand-silver-blue/5'
+                        atTop && isHome ? 'bg-white/30 text-white' : 'bg-brand-silver-blue/90 text-white'
                       )
                     : cn(
                         'hover:text-brand-silver-blue',
-                        atTop && isHome ? 'text-white/70 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                        atTop && isHome ? 'text-white/70 hover:text-white hover:bg-white/40' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                       )
                 )}
               >

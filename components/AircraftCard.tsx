@@ -6,7 +6,7 @@ import type { Aircraft } from '@/types';
 interface Props {
   aircraft: Aircraft;
   index?: number;
-  featured?: boolean;
+  featured?: boolean; 
 }
 
 export default function AircraftCard({ aircraft, index = 0, featured }: Props) {

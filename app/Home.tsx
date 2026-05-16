@@ -72,25 +72,25 @@ export default function Home() {
                 <span className="text-[10px] uppercase tracking-[0.3em] font-semibold text-white/80">24/7 Global Flight Operations</span>
               </div>
 
-              <h1 className="text-5xl md:text-8xl font-bold leading-[1.05] tracking-tighter text-white">
+              <h1 className="text-4xl md:text-7xl font-bold leading-[1.05] tracking-tighter text-white">
                 Speed Meets <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-brand-silver-blue">Reliability</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-2xl">
-                Seamless private jet charter across Africa and beyond — where every mission is executed with precision, privacy, and purpose.
+              <p className="text-lg md:text-xl text-white font-light leading-relaxed max-w-2xl">
+                Seamless private jet charter across Africa and beyond  where every mission is executed with precision, privacy, and purpose.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <Link
                   to="/quote"
-                  className="w-full sm:w-auto bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-brand-silver-blue hover:text-white transition-all duration-500 shadow-2xl shadow-black/20"
+                  className="w-full sm:w-auto bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-sm text-center tracking-wide hover:bg-brand-silver-blue hover:text-white transition-all duration-500 shadow-2xl shadow-black/20"
                 >
                   REQUEST A QUOTE
                 </Link>
                 <Link
                   to="/fleet"
-                  className="w-full sm:w-auto border border-white/30 text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full sm:w-auto border border-white/30 text-center text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
                 >
                   EXPLORE FLEET
                 </Link>
@@ -117,7 +117,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Stats Bar — moved out of hero to prevent overlap */}
+      {/* Stats Bar */}
       <section className="relative z-20 -mt-12 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -132,9 +132,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 p-5 flex items-center gap-4 border border-gray-100"
+                className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 p-5 flex flex-col md:flex-row items-center gap-4 border border-gray-100"
               >
-                <div className="w-10 h-10 rounded-xl bg-brand-silver-blue/10 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-brand-silver-blue/10 flex  items-center justify-center shrink-0">
                   <item.icon className="w-5 h-5 text-brand-silver-blue" />
                 </div>
                 <div>
@@ -148,15 +148,17 @@ export default function Home() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-32 px-6 md:px-12">
+      <section className="py-12 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
           <div className="flex-1 space-y-8">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
               The Standard of <br />
               <span className="text-brand-silver-blue">Executive Mobility</span>
             </h2>
             <p className="text-brand-soft-silver text-lg leading-relaxed font-light">
-              We understand that in the world of high-stakes business and personal travel, time is the ultimate currency. JetConnect247 was built on a singular promise: <strong>Speed Meets Reliability</strong>.
+              We understand that in the world of high-stakes business and personal travel, 
+              time is the ultimate currency. JetConnect247 was built on a singular promise: 
+              <strong> Speed Meets Reliability</strong>.
             </p>
             <div className="grid grid-cols-2 gap-8 pt-4">
               <div>
@@ -195,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* How It Works — 3 Steps */}
-      <section className="py-28 px-6 md:px-12 bg-gray-50">
+      <section className="py-8 md:py-28 px-6 md:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto space-y-20">
           <SectionHeading
             badge="Simple Process"
@@ -233,7 +235,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center pt-8">
+          <div className="text-center md:pt-8">
             <Link to="/quote" className="inline-flex items-center gap-2 bg-brand-white text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-brand-silver-blue transition-all shadow-xl">
               Start Your Booking <ArrowRight className="w-4 h-4" />
             </Link>
@@ -242,14 +244,14 @@ export default function Home() {
       </section>
 
       {/* Featured Fleet */}
-      <section className="py-32 px-6 md:px-12 relative overflow-hidden">
+      <section className="py-12 md:py-32 px-6 md:px-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-20">
           <div className="flex flex-col md:flex-row items-end justify-between gap-6">
             <div className="space-y-4">
               <span className="text-brand-silver-blue text-xs font-bold uppercase tracking-[0.3em]">Curated Collection</span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">Premier Private Fleet</h2>
             </div>
-            <Link to="/fleet" className="group flex items-center gap-2 bg-gray-50 border border-gray-200 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue hover:text-white transition-all">
+            <Link to="/fleet" className="group flex items-center gap-2 bg-gray-300 border border-gray-200 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue hover:text-white transition-all">
               View All Aircraft <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -265,8 +267,8 @@ export default function Home() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-32 px-6 md:px-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto space-y-20">
+      <section className="md:py-32 px-6 md:px-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto md:space-y-20">
           <SectionHeading
             title="Tailored Aviation Solutions"
             description="From discrete executive travel to life-critical medical evacuations, we provide mission-ready solutions across the African continent."

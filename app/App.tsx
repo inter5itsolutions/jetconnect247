@@ -11,6 +11,7 @@ import About from './About';
 import Dashboard from './Dashboard';
 import Blog from './Blog';
 import Legal from './Legal';
+import Contact from './Contact';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -36,7 +37,7 @@ export default function App() {
             <Route path="/quote" element={<QuoteRequest />} />
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<QuoteRequest />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/privacy" element={<Legal />} />
