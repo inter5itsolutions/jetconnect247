@@ -42,7 +42,7 @@ export default function Services() {
           align="center"
         />
 
-        <div className="space-y-40 mt-32">
+        <div className="space-y-20 md:space-y-40 mt-12 md:mt-32">
           {services.map((service, i) => (
             <div key={service.id} className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-20 items-center`}>
               <motion.div
@@ -51,9 +51,9 @@ export default function Services() {
                 viewport={{ once: true }}
                 className="flex-1 space-y-8"
               >
-                <service.icon className="w-12 h-12 text-brand-silver-blue" />
-                <h2 className="text-4xl font-bold tracking-tight">{service.title}</h2>
-                <p className="text-brand-soft-silver text-lg font-light leading-relaxed">
+                <service.icon className="h-8 w-8 md:w-12 md:h-12 text-brand-silver-blue" />
+                <h2 className="text-2xl md:text-4xl font-bold tracking-tight">{service.title}</h2>
+                <p className=" text-brand-silver-blue text-base md:text-lg font-light leading-relaxed">
                   {service.description}
                 </p>
                 <ul className="space-y-4">
@@ -79,7 +79,7 @@ export default function Services() {
                 <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-xl">
                   <img src={service.image} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={service.title} />
                 </div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-silver-blue/10 backdrop-blur-3xl rounded-full" />
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-brand-silver-blue/10 backdrop-blur-3xl rounded-full" />
               </motion.div>
             </div>
           ))}

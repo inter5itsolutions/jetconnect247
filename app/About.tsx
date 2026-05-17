@@ -13,8 +13,8 @@ export default function About() {
           align="center"
         />
 
-        <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden shadow-2xl">
-          <img src="/assets/IMG-20251114-WA0013.jpg" className="w-full h-full object-cover" alt="Elite Aviation" />
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+          <img src="/assets/IMG-20251114-WA0014.jpg" className="w-full h-full object-cover" alt="Elite Aviation" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">

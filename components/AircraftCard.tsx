@@ -15,7 +15,7 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`group ${featured ? 'h-[500px] rounded-3xl overflow-hidden bg-gray-50' : 'rounded-[2rem] overflow-hidden glass-card hover:border-brand-silver-blue/40 transition-all duration-500'}`}
+      className={`group ${featured ? 'h-[400px] rounded overflow-hidden bg-gray-50' : 'rounded overflow-hidden glass-card hover:border-brand-silver-blue/40 transition-all duration-500'}`}
     >
       {featured ? (
         /* Featured card layout (Home page) */
@@ -24,9 +24,9 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
             <img
               src={aircraft.heroImage}
               alt={aircraft.name}
-              className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-1000"
+              className="w-full h-full object-cover rounded-3xl opacity-80 group-hover:scale-110 transition-transform duration-1000"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-black/20 to-transparent" />
           </div>
           <div className="absolute bottom-0 left-0 right-0 p-10 space-y-4">
             <span className="inline-block px-3 py-1 rounded-full bg-brand-silver-blue/10 border border-brand-silver-blue/30 text-[10px] font-bold text-brand-silver-blue uppercase tracking-widest">
@@ -49,11 +49,11 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
       ) : (
         /* Standard card layout (Fleet page) */
         <>
-          <div className="relative h-80 overflow-hidden">
+          <div className="relative h-80 overflow-hidden rounded-t-3xl">
             <img
               src={aircraft.heroImage}
               alt={aircraft.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 rounded-t-3xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
             <div className="absolute top-6 left-6">
@@ -65,7 +65,7 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
           <div className="p-8 space-y-8">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">{aircraft.name}</h3>
+                <h3 className="text-xl md:text-3xl font-bold tracking-tight mb-2">{aircraft.name}</h3>
                 <p className="text-brand-soft-silver text-sm font-light max-w-sm">{aircraft.description}</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
               <SpecDetail icon={Map} label="Range" value={aircraft.range} />
               <SpecDetail icon={Gauge} label="Speed" value={aircraft.speed} />
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
               <Link
                 to={`/fleet/${aircraft.slug}`}
                 className="flex-1 bg-brand-white text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue transition-all text-center"

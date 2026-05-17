@@ -57,19 +57,19 @@ export default function Navbar() {
               src="/assets/logo.png"
               alt="JetConnect247"
               className={cn(
-                'h-9 w-auto transition-all duration-500',
+                'h-6 md:h-9 w-auto transition-all duration-500',
                 atTop && isHome ? 'brightness-0 invert' : ''
               )}
             />
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                'text-lg font-bold tracking-tighter transition-colors duration-500',
+                'text-[12px] md:text-lg font-bold tracking-tighter transition-colors duration-500',
                 atTop && isHome ? 'text-white' : 'text-gray-900'
               )}>
                 JETCONNECT<span className="text-brand-silver-blue">247</span>
               </span>
               <span className={cn(
-                'text-[9px] tracking-[0.2em] uppercase font-medium transition-colors duration-500',
+                'text-[7px] md:text-[9px] tracking-[0.2em] uppercase font-medium transition-colors duration-500',
                 atTop && isHome ? 'text-white/60' : 'text-gray-400'
               )}>
                 Aviation Excellence

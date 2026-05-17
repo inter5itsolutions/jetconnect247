@@ -24,7 +24,7 @@ export default function StatCard({ label, value, icon: Icon, change, index = 0, 
             <Icon className="w-5 h-5 text-brand-silver-blue" />
           </div>
           {change && (
-            <span className="text-[10px] font-bold text-brand-silver-blue bg-brand-silver-blue/10 px-2 py-1 rounded">
+            <span className="text-[8px] md:text-[10px] font-bold text-brand-silver-blue bg-brand-silver-blue/10 px-2 py-1 rounded">
               {change}
             </span>
           )}
@@ -32,7 +32,7 @@ export default function StatCard({ label, value, icon: Icon, change, index = 0, 
       )}
       <div>
         <p className="text-[10px] uppercase tracking-widest text-brand-soft-silver font-bold mb-1">{label}</p>
-        <p className="text-3xl font-bold">{value}</p>
+        <p className="text-xl md:text-3xl font-bold">{value}</p>
       </div>
     </motion.div>
   );

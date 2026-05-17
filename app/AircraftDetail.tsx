@@ -20,18 +20,18 @@ export default function AircraftDetail() {
   return (
     <section>
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-end">
+      <section className="relative h-[90vh]  flex items-end">
         <div className="absolute inset-0">
           <img src={aircraft.heroImage} className="w-full h-full object-cover" alt={aircraft.name} />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/30  via-black/50  to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20 w-full">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-            <Link to="/fleet" className="flex items-center gap-2 text-brand-soft-silver hover:text-brand-white transition-colors text-xs font-bold uppercase tracking-widest">
+            <Link to="/fleet" className="flex items-center gap-2 text-white hover:text-brand-white transition-colors text-xs font-bold uppercase tracking-widest">
               <ArrowLeft className="w-4 h-4" /> Back to Fleet
             </Link>
             <div className="space-y-2">
-              <span className="text-brand-silver-blue text-xs font-bold uppercase tracking-[0.3em]">{aircraft.category}</span>
+              <span className="text-white text-xs font-bold uppercase tracking-[0.3em]">{aircraft.category}</span>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">{aircraft.name}</h1>
             </div>
             <div className="flex flex-wrap gap-10 pt-6">
@@ -41,7 +41,7 @@ export default function AircraftDetail() {
                 { label: 'Cruise Spd', value: aircraft.speed, icon: Gauge },
               ].map(spec => (
                 <div key={spec.label} className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2 text-brand-silver-blue font-bold text-[10px] uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-white font-bold text-[10px] uppercase tracking-widest">
                     <spec.icon className="w-3.5 h-3.5" />
                     {spec.label}
                   </div>

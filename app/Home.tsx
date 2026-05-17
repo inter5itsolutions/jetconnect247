@@ -197,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* How It Works — 3 Steps */}
-      <section className="py-8 md:py-28 px-6 md:px-12 bg-gray-50">
+      <section className="py-12 md:py-28 px-6 md:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto space-y-20">
           <SectionHeading
             badge="Simple Process"
@@ -246,13 +246,13 @@ export default function Home() {
       {/* Featured Fleet */}
       <section className="py-12 md:py-32 px-6 md:px-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-20">
-          <div className="flex flex-col md:flex-row items-end justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-4">
               <span className="text-brand-silver-blue text-xs font-bold uppercase tracking-[0.3em]">Curated Collection</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">Premier Private Fleet</h2>
+              <h2 className="text-2xl md:text-5xl font-bold tracking-tighter">Premier Private Fleet</h2>
             </div>
-            <Link to="/fleet" className="group flex items-center gap-2 bg-gray-300 border border-gray-200 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue hover:text-white transition-all">
-              View All Aircraft <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Link to="/fleet" className="group flex items-center text-white gap-2 bg-brand-silver-blue border border-gray-200 pl-6 md:px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue hover:text-white transition-all">
+              View Available Aircraft <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
@@ -267,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* Services Grid */}
-      <section className="md:py-32 px-6 md:px-12 bg-gray-50">
+      <section className="py-12 md:py-32 px-6 md:px-12 bg-gray-200">
         <div className="max-w-7xl mx-auto md:space-y-20">
           <SectionHeading
             title="Tailored Aviation Solutions"
@@ -275,16 +275,16 @@ export default function Home() {
             align="center"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-4 md:py-8">
             {services.map((service) => (
               <div key={service.title} className="group relative h-[400px] rounded-3xl overflow-hidden glass-card hover:border-brand-silver-blue/30 transition-all">
                 <img src={service.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-black/60 to-transparent" />
                 <div className="absolute inset-0 p-10 flex flex-col justify-end">
-                  <service.icon className="w-8 h-8 text-brand-silver-blue mb-4" />
-                  <h3 className="text-2xl font-bold mb-3 text-brand-white">{service.title}</h3>
-                  <p className="text-brand-soft-silver text-sm mb-6">{service.desc}</p>
-                  <Link to="/services" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-silver-blue hover:text-accent-blue transition-colors">
+                  <service.icon className="w-8 h-8 text-white mb-4" />
+                  <h3 className="text-2xl font-bold mb-3 text-white/80">{service.title}</h3>
+                  <p className="text-white text-sm mb-6">{service.desc}</p>
+                  <Link to="/services" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black hover:text-accent-blue transition-colors">
                     Learn More <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
