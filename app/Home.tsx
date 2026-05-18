@@ -50,9 +50,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/assets/IMG-20251114-WA0015.jpg"
-            alt="Private Jet"
+        <video
+            src="/assets/Private_Jet_Interior_1920x1080.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
@@ -69,7 +72,7 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[10px] uppercase tracking-[0.3em] font-semibold text-white/80">24/7 Global Flight Operations</span>
+                <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] font-semibold text-white/80">24/7 Global Flight Operations</span>
               </div>
 
               <h1 className="text-4xl md:text-7xl font-bold leading-[1.05] tracking-tighter text-white">
@@ -77,7 +80,7 @@ export default function Home() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-brand-silver-blue">Reliability</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-white font-light leading-relaxed max-w-2xl">
+              <p className="text-md md:text-xl text-white font-light leading-relaxed max-w-2xl">
                 Seamless private jet charter across Africa and beyond  where every mission is executed with precision, privacy, and purpose.
               </p>
 
@@ -155,19 +158,19 @@ export default function Home() {
               The Standard of <br />
               <span className="text-brand-silver-blue">Executive Mobility</span>
             </h2>
-            <p className="text-brand-soft-silver text-lg leading-relaxed font-light">
+            <p className="text-brand-soft-silver text-md md:text-lg leading-relaxed font-light">
               We understand that in the world of high-stakes business and personal travel, 
               time is the ultimate currency. JetConnect247 was built on a singular promise: 
               <strong> Speed Meets Reliability</strong>.
             </p>
             <div className="grid grid-cols-2 gap-8 pt-4">
               <div>
-                <span className="text-4xl font-bold block mb-2">150+</span>
-                <span className="text-xs uppercase tracking-widest text-brand-soft-silver">Destinations across Africa</span>
+                <span className="text-2xl md:text-4xl font-bold block mb-2">150+</span>
+                <span className="text-[9px] md:text-xs uppercase tracking-widest text-brand-soft-silver">Destinations across Africa</span>
               </div>
               <div>
-                <span className="text-4xl font-bold block mb-2">1,200</span>
-                <span className="text-xs uppercase tracking-widest text-brand-soft-silver">Successful Fleet Missions</span>
+                <span className="text-2xl md:text-4xl font-bold block mb-2">1,200</span>
+                <span className="text-[9px] md:text-xs uppercase tracking-widest text-brand-soft-silver">Successful Fleet Missions</span>
               </div>
             </div>
             <Link to="/about" className="inline-flex items-center gap-2 text-brand-silver-blue font-bold uppercase text-xs tracking-widest hover:gap-4 transition-all">

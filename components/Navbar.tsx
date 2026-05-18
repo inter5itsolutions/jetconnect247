@@ -52,7 +52,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between h-20 md:h-22">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <Link to="/" className="flex items-center group shrink-0">
             <img
               src="/assets/logo.png"
               alt="JetConnect247"
@@ -63,17 +63,17 @@ export default function Navbar() {
             />
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                'text-[12px] md:text-lg font-bold tracking-tighter transition-colors duration-500',
+                'text-[16px] md:text-2xl -ml-1.5 md:-ml-3 font-semibold tracking-tighter transition-colors duration-500',
                 atTop && isHome ? 'text-white' : 'text-gray-900'
               )}>
-                JETCONNECT<span className="text-brand-silver-blue">247</span>
+                et<span className='text-2xl md:text-4xl'>C</span>onnect<span className="text-brand-silver-blue"> 24/7</span>
               </span>
-              <span className={cn(
+              {/* <span className={cn(
                 'text-[7px] md:text-[9px] tracking-[0.2em] uppercase font-medium transition-colors duration-500',
                 atTop && isHome ? 'text-white/60' : 'text-gray-400'
               )}>
                 Aviation Excellence
-              </span>
+              </span> */}
             </div>
           </Link>
 
