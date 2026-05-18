@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Search } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import LazyImage from '@/components/LazyImage';
 
 const articles = [
   {
@@ -54,7 +55,7 @@ export default function Blog() {
               className="group glass-card rounded-3xl overflow-hidden flex flex-col h-full"
             >
               <div className="h-60 overflow-hidden">
-                <img src={article.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={article.title} />
+                <LazyImage src={article.image} wrapperClassName="w-full h-full" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={article.title} />
               </div>
               <div className="p-8 flex flex-col flex-grow space-y-6">
                 <div className="flex justify-between items-center">

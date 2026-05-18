@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Users, Gauge, Map, ArrowRight } from 'lucide-react';
 import type { Aircraft } from '@/types';
+import LazyImage from '@/components/LazyImage';
 
 interface Props {
   aircraft: Aircraft;
@@ -21,9 +22,10 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
         /* Featured card layout (Home page) */
         <>
           <div className="absolute inset-0">
-            <img
+            <LazyImage
               src={aircraft.heroImage}
               alt={aircraft.name}
+              wrapperClassName="w-full h-full"
               className="w-full h-full object-cover rounded-3xl opacity-80 group-hover:scale-110 transition-transform duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-black/20 to-transparent" />
@@ -50,9 +52,10 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
         /* Standard card layout (Fleet page) */
         <>
           <div className="relative h-80 overflow-hidden rounded-t-3xl">
-            <img
+            <LazyImage
               src={aircraft.heroImage}
               alt={aircraft.name}
+              wrapperClassName="w-full h-full"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 rounded-t-3xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />

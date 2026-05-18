@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { AIRCRAFT_DATA } from '@/lib/data/fleet';
 import { Check, ArrowLeft, Users, Gauge, Map as MapIcon, Wifi, Coffee, ShieldCheck } from 'lucide-react';
 import { useMemo } from 'react';
+import LazyImage from '@/components/LazyImage';
 
 export default function AircraftDetail() {
   const { slug } = useParams();
@@ -22,7 +23,7 @@ export default function AircraftDetail() {
       {/* Hero */}
       <section className="relative h-[90vh]  flex items-end">
         <div className="absolute inset-0">
-          <img src={aircraft.heroImage} className="w-full h-full object-cover" alt={aircraft.name} />
+          <LazyImage src={aircraft.heroImage} wrapperClassName="w-full h-full" className="w-full h-full object-cover" alt={aircraft.name} />
           <div className="absolute inset-0 bg-gradient-to-t from-white/30  via-black/50  to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20 w-full">
@@ -79,7 +80,7 @@ export default function AircraftDetail() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {aircraft.gallery.length > 0 ? aircraft.gallery.map((img, i) => (
                   <div key={i} className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-                    <img src={img} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt={`${aircraft.name} interior ${i + 1}`} />
+                    <LazyImage src={img} wrapperClassName="w-full h-full" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt={`${aircraft.name} interior ${i + 1}`} />
                   </div>
                 )) : (
                   <>

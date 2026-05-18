@@ -1,11 +1,13 @@
+import { useCallback, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Shield, Zap, Globe, Clock, ChevronRight, Search, Plane, HeartPulse, Package, Users, Check, MessageCircle } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Globe, Clock, ChevronRight, Search, Plane, HeartPulse, Package, Users, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AIRCRAFT_DATA } from '@/lib/data/fleet';
 import CTAButton from '@/components/CTAButton';
 import SectionHeading from '@/components/SectionHeading';
 import AircraftCard from '@/components/AircraftCard';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import LazyImage from '@/components/LazyImage';
 
 const services = [
   {
@@ -42,6 +44,18 @@ const fleetImages = [
 
 export default function Home() {
   const featuredAircraft = AIRCRAFT_DATA.filter(a => a.featured);
+  const videoReady = useRef(false);
+
+  const signalReady = useCallback(() => {
+    if (videoReady.current) return;
+    videoReady.current = true;
+    window.dispatchEvent(new CustomEvent('app:ready'));
+  }, []);
+
+  useEffect(() => {
+    signalReady();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -50,12 +64,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-        <video
+          <video
             src="/assets/Private_Jet_Interior_1920x1080.mp4"
             autoPlay
             loop
             muted
             playsInline
+            onCanPlay={signalReady}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
@@ -179,8 +194,9 @@ export default function Home() {
           </div>
           <div className="flex-1 relative">
             <div className="aspect-square relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <LazyImage
                 src="/assets/IMG-20251114-WA0014.jpg"
+                wrapperClassName="w-full h-full"
                 className="w-full h-full object-cover"
                 alt="Luxury Interior"
               />
@@ -281,7 +297,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-4 md:py-8">
             {services.map((service) => (
               <div key={service.title} className="group relative h-[400px] rounded-3xl overflow-hidden glass-card hover:border-brand-silver-blue/30 transition-all">
-                <img src={service.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <LazyImage src={service.img} wrapperClassName="absolute inset-0" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={service.title} />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-black/60 to-transparent" />
                 <div className="absolute inset-0 p-10 flex flex-col justify-end">
                   <service.icon className="w-8 h-8 text-white mb-4" />
@@ -314,7 +330,7 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg"
               >
-                <img src={src} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Fleet" />
+                <LazyImage src={src} wrapperClassName="w-full h-full" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Fleet" />
               </motion.div>
             ))}
           </div>

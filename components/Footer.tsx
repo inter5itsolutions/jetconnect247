@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import LazyImage from '@/components/LazyImage';
 
 const footerLinks = {
   explore: [
@@ -25,7 +26,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="space-y-6">
           <Link to="/" className="flex items-center gap-2">
-            <img src="/assets/logo.png" alt="JetConnect247" className="h-10 w-auto" />
+            <LazyImage src="/assets/logo.png" alt="JetConnect247" className="h-10 w-auto" />
           </Link>
           <p className="text-brand-soft-silver text-sm leading-relaxed max-w-xs">
             Redefining private air travel across Africa with a focus on speed, reliability, and modern luxury.

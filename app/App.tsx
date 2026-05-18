@@ -1,7 +1,8 @@
+import { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SplashScreen from '@/components/SplashScreen';
 import Home from './Home';
 import Fleet from './Fleet';
 import AircraftDetail from './AircraftDetail';
@@ -23,9 +24,38 @@ function ScrollToTop() {
   return null;
 }
 
+const SPLASH_MIN_MS = 2500;
+const SPLASH_TIMEOUT_MS = 6000;
+
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  const dismissSplash = useCallback(() => setShowSplash(false), []);
+
+  useEffect(() => {
+    const onReady = () => dismissSplash();
+    window.addEventListener('app:ready', onReady, { once: true });
+
+    const minTimer = setTimeout(() => {
+      window.removeEventListener('app:ready', onReady);
+      dismissSplash();
+    }, SPLASH_TIMEOUT_MS);
+
+    // Enforce minimum splash duration for a polished feel
+    const minSplash = setTimeout(() => {
+      window.addEventListener('app:ready', onReady, { once: true });
+    }, SPLASH_MIN_MS);
+
+    return () => {
+      clearTimeout(minTimer);
+      clearTimeout(minSplash);
+      window.removeEventListener('app:ready', onReady);
+    };
+  }, [dismissSplash]);
+
   return (
     <Router>
+      <SplashScreen show={showSplash} />
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />

@@ -1,5 +1,6 @@
 import SectionHeading from '@/components/SectionHeading';
 import StatCard from '@/components/StatCard';
+import LazyImage from '@/components/LazyImage';
 
 export default function About() {
   return (
@@ -14,7 +15,7 @@ export default function About() {
         />
 
         <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-          <img src="/assets/IMG-20251114-WA0014.jpg" className="w-full h-full object-cover" alt="Elite Aviation" />
+          <LazyImage src="/assets/IMG-20251114-WA0014.jpg" wrapperClassName="w-full h-full" className="w-full h-full object-cover" alt="Elite Aviation" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">

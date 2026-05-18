@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Plane, Shield, HeartPulse, Box, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '@/components/SectionHeading';
+import LazyImage from '@/components/LazyImage';
 
 const services = [
   {
@@ -77,7 +78,7 @@ export default function Services() {
                 className="flex-1 relative group"
               >
                 <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-xl">
-                  <img src={service.image} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={service.title} />
+                  <LazyImage src={service.image} wrapperClassName="w-full h-full" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={service.title} />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-brand-silver-blue/10 backdrop-blur-3xl rounded-full" />
               </motion.div>
