@@ -1,10 +1,12 @@
 import SectionHeading from '@/components/SectionHeading';
 import AircraftCard from '@/components/AircraftCard';
 import { AIRCRAFT_DATA } from '@/lib/data/fleet';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function Fleet() {
   return (
     <div className="pt-32 pb-20 px-6 md:px-12">
+      <WhatsAppButton />
       <div className="max-w-7xl mx-auto space-y-16">
         <SectionHeading
           badge="The JetConnect247 Collection"

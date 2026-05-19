@@ -54,20 +54,15 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo2.png"
               alt="JetConnect247"
               className={cn(
-                'h-6 md:h-9 w-auto transition-all duration-500',
+                'h-4 md:h-6 w-auto transition-all duration-500',
                 atTop && isHome ? 'brightness-0 invert' : ''
               )}
             />
             <div className="flex flex-col leading-tight">
-              <span className={cn(
-                'text-[16px] md:text-2xl -ml-1.5 md:-ml-3 font-semibold tracking-tighter transition-colors duration-500',
-                atTop && isHome ? 'text-white' : 'text-gray-900'
-              )}>
-                et<span className='text-2xl md:text-4xl'>C</span>onnect<span className="text-brand-silver-blue"> 24/7</span>
-              </span>
+             
               {/* <span className={cn(
                 'text-[7px] md:text-[9px] tracking-[0.2em] uppercase font-medium transition-colors duration-500',
                 atTop && isHome ? 'text-white/60' : 'text-gray-400'

@@ -1,10 +1,12 @@
 import SectionHeading from '@/components/SectionHeading';
 import StatCard from '@/components/StatCard';
 import LazyImage from '@/components/LazyImage';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function About() {
   return (
     <section className="pt-32 pb-20 px-6 md:px-12">
+      <WhatsAppButton />
       <div className="max-w-7xl mx-auto space-y-32">
         <SectionHeading
           badge="Our Story"

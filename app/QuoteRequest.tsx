@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import { CheckCircle, Plane, ArrowRight, User, Mail, Phone, MapPin, Calendar, Users, Shield } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const quoteSchema = z.object({
   flightType: z.enum(['one-way', 'round-trip', 'multi-leg']),
@@ -63,6 +64,7 @@ export default function QuoteRequest() {
 
   return (
     <section className="min-h-screen pt-32 pb-20 px-6">
+      <WhatsAppButton />
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
         {/* Sidebar */}
         <div className="lg:col-span-2 space-y-12">

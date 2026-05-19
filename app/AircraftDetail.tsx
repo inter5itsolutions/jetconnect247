@@ -4,6 +4,7 @@ import { AIRCRAFT_DATA } from '@/lib/data/fleet';
 import { Check, ArrowLeft, Users, Gauge, Map as MapIcon, Wifi, Coffee, ShieldCheck } from 'lucide-react';
 import { useMemo } from 'react';
 import LazyImage from '@/components/LazyImage';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function AircraftDetail() {
   const { slug } = useParams();
@@ -22,6 +23,7 @@ export default function AircraftDetail() {
     <section>
       {/* Hero */}
       <section className="relative h-[90vh]  flex items-end">
+        <WhatsAppButton />
         <div className="absolute inset-0">
           <LazyImage src={aircraft.heroImage} wrapperClassName="w-full h-full" className="w-full h-full object-cover" alt={aircraft.name} />
           <div className="absolute inset-0 bg-gradient-to-t from-white/30  via-black/50  to-transparent" />

@@ -3,6 +3,7 @@ import { Plane, Shield, HeartPulse, Box, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '@/components/SectionHeading';
 import LazyImage from '@/components/LazyImage';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const services = [
   {
@@ -34,6 +35,7 @@ const services = [
 export default function Services() {
   return (
     <section className="pt-32 pb-20 px-6 md:px-12">
+      <WhatsAppButton />
       <div className="max-w-7xl mx-auto space-y-16">
         <SectionHeading
           badge="Operational Capabilities"

@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="space-y-6">
           <Link to="/" className="flex items-center gap-2">
-            <LazyImage src="/assets/logo.png" alt="JetConnect247" className="h-10 w-auto" />
+            <LazyImage src="/assets/logo2.png" alt="JetConnect247" className="h-4 md:h-6 w-auto" />
           </Link>
           <p className="text-brand-soft-silver text-sm leading-relaxed max-w-xs">
             Redefining private air travel across Africa with a focus on speed, reliability, and modern luxury.
@@ -64,11 +64,15 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3 text-brand-soft-silver">
               <Mail className="w-4 h-4 text-brand-silver-blue shrink-0" />
-              <span>concierge@jetconnect247.com</span>
+              <span>fly@jetconnect247.com</span>
             </li>
             <li className="flex items-start gap-3 text-brand-soft-silver">
               <MapPin className="w-4 h-4 text-brand-silver-blue mt-1 shrink-0" />
-              <span>Executive Wing, Murtala Muhammed International Airport, Lagos, Nigeria</span>
+              <span>
+                2nd Floor, Landmark House,
+                52-54 Isaac John Street, GRA Ikeja,
+                Lagos, Nigeria.,
+              </span>
             </li>
           </ul>
         </div>

@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Instagram, MessageCircle } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Full name is required'),
@@ -111,14 +112,16 @@ export default function Contact() {
 
   return (
     <section className="pt-28 pb-20 px-6 md:px-12">
+      <WhatsAppButton />
+
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Header */}
         <SectionHeading
           badge="Get in Touch"
           title="Seamless Travel,"
           highlight="One Call Away"
-          description="Whether you need a last-minute charter or a complex跨国 itinerary, our team is standing by 24/7."
-          align="center"
+          description="Whether you need a last-minute charter or a complex itinerary, our team is standing by 24/7."
+          align="center" 
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

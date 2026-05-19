@@ -40,8 +40,8 @@ export default function SplashScreen({ show }: Props) {
                 />
               ))}
             </div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-medium">
-              Preparing your experience
+            <p className="text-[10px] uppercase tracking-[0.3em] text-brand-silver-blue font-medium">
+              Ready to Move
             </p>
           </motion.div>
         </motion.div>
