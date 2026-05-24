@@ -1,24 +1,37 @@
-import { useForm } from 'react-hook-form';
+import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'motion/react';
-import { useState } from 'react';
-import { CheckCircle, Plane, ArrowRight, User, Mail, Phone, MapPin, Calendar, Users, Shield } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { CheckCircle, Plane, ArrowRight, User, Mail, Phone, MapPin, Calendar, Users, Shield, Plus, Trash2 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import AirportInput from '@/components/AirportInput';
+
+const legSchema = z.object({
+  departure: z.string().min(3, 'Departure airport is required'),
+  destination: z.string().min(3, 'Destination airport is required'),
+  date: z.string().min(1, 'Date is required'),
+}).superRefine((data, ctx) => {
+  if (data.departure && data.destination && data.departure === data.destination) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['destination'], message: 'Destination must differ from departure' });
+  }
+});
 
 const quoteSchema = z.object({
-  flightType: z.enum(['one-way', 'round-trip', 'multi-leg']),
-  departure: z.string().min(2, 'Departure city is required'),
-  destination: z.string().min(2, 'Destination city is required'),
-  departureDate: z.string().min(1, 'Date is required'),
+  tripType: z.enum(['one-way', 'round-trip', 'multi-city']),
+  legs: z.array(legSchema).min(1),
   returnDate: z.string().optional(),
-  passengers: z.number().min(1).max(20),
+  passengers: z.number().min(1, 'At least 1 passenger').max(20, 'Max 20 passengers'),
   aircraftPreference: z.string().optional(),
   name: z.string().min(2, 'Full name is required'),
   email: z.string().email('Invalid email address'),
   phone: z.string().min(8, 'Invalid phone number'),
   notes: z.string().optional(),
+}).superRefine((data, ctx) => {
+  if (data.tripType === 'round-trip' && !data.returnDate) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['returnDate'], message: 'Return date is required for round trips' });
+  }
 });
 
 type QuoteFormValues = z.infer<typeof quoteSchema>;
@@ -29,19 +42,40 @@ const perks = [
   { icon: Clock, title: 'Rapid Dispatch', desc: 'Wheels-up in under 4 hours' },
 ];
 
-const flightTypes = ['one-way', 'round-trip', 'multi-leg'] as const;
+const tripTypes = [
+  { value: 'one-way' as const, label: 'One Way' },
+  { value: 'round-trip' as const, label: 'Round Trip' },
+  { value: 'multi-city' as const, label: 'Multi-City' },
+];
+
+function Clock({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
 
 export default function QuoteRequest() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<QuoteFormValues>({
+  const { control, register, handleSubmit, formState: { errors }, watch, setValue } = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteSchema),
-    defaultValues: { flightType: 'one-way', passengers: 1 },
+    defaultValues: {
+      tripType: 'one-way',
+      legs: [{ departure: '', destination: '', date: '' }],
+      passengers: 1,
+    },
   });
 
-  const onSubmit = () => {
+  const { fields, append, remove } = useFieldArray({ control, name: 'legs' });
+
+  const tripType = watch('tripType');
+
+  const onSubmit = useCallback(() => {
     setTimeout(() => setIsSubmitted(true), 1500);
-  };
+  }, []);
 
   if (isSubmitted) {
     return (
@@ -87,7 +121,7 @@ export default function QuoteRequest() {
           <div className="p-8 rounded-3xl bg-gray-50 border border-gray-200 space-y-4">
             <p className="text-xs font-bold uppercase tracking-widest text-brand-silver-blue">Instant Contact</p>
             <p className="text-2xl font-bold">+234 (0) 800 JET 247</p>
-            <p className="text-xs text-brand-soft-silver leading-relaxed italic">"Providing uncompromised reliability for Africa's most discerning travelers."</p>
+            <p className="text-xs text-brand-soft-silver leading-relaxed italic">{'"Providing uncompromised reliability for Africa\'s most discerning travelers."'}</p>
           </div>
         </div>
 
@@ -103,32 +137,99 @@ export default function QuoteRequest() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {flightTypes.map(type => (
-                    <label key={type} className="cursor-pointer">
-                      <input type="radio" {...register('flightType')} value={type} className="peer sr-only" />
+                  {tripTypes.map(type => (
+                    <label key={type.value} className="cursor-pointer">
+                      <input type="radio" {...register('tripType')} value={type.value} className="peer sr-only" />
                       <div className="py-4 px-6 rounded-xl border border-gray-200 bg-gray-50 text-xs font-bold uppercase tracking-widest text-center transition-all peer-checked:bg-brand-white peer-checked:text-white peer-checked:border-brand-white">
-                        {type.replace('-', ' ')}
+                        {type.label}
                       </div>
                     </label>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Field label="Departure City" error={errors.departure}>
-                    <Input icon={MapPin} register={register('departure')} placeholder="e.g. Lagos, Nigeria" />
-                  </Field>
-                  <Field label="Destination City" error={errors.destination}>
-                    <Input icon={MapPin} register={register('destination')} placeholder="e.g. Geneva, Switzerland" />
-                  </Field>
+                {/* Legs */}
+                <div className="space-y-6">
+                  {fields.map((field, index) => (
+                    <div key={field.id} className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-widest text-brand-soft-silver">
+                          {tripType === 'multi-city' ? `Leg ${index + 1}` : 'Route'}
+                        </span>
+                        {tripType === 'multi-city' && fields.length > 1 && (
+                          <button type="button" onClick={() => remove(index)}
+                            className="p-2 rounded-lg text-red-400 hover:bg-red-50 hover:text-red-600 transition-all">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <AirportInput
+                          value={field.departure}
+                          onChange={(iata) => setValue(`legs.${index}.departure`, iata, { shouldValidate: true })}
+                          placeholder="Search departure airport..."
+                          label="From"
+                          error={errors.legs?.[index]?.departure?.message}
+                        />
+                        <AirportInput
+                          value={field.destination}
+                          onChange={(iata) => setValue(`legs.${index}.destination`, iata, { shouldValidate: true })}
+                          placeholder="Search destination airport..."
+                          label="To"
+                          error={errors.legs?.[index]?.destination?.message}
+                        />
+                      </div>
+
+                      <div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Departure Date</label>
+                          <div className="relative">
+                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                            <input type="date" {...register(`legs.${index}.date`)}
+                              className="w-full bg-white border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all" />
+                          </div>
+                          {errors.legs?.[index]?.date && (
+                            <p className="text-red-500 text-xs mt-1">{errors.legs?.[index]?.date?.message}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
+                {/* Add Leg (multi-city only) */}
+                {tripType === 'multi-city' && (
+                  <button type="button" onClick={() => append({ departure: '', destination: '', date: '' })}
+                    className="w-full py-4 border-2 border-dashed border-gray-200 rounded-2xl text-xs font-bold uppercase tracking-widest text-brand-soft-silver hover:border-brand-silver-blue hover:text-brand-silver-blue transition-all flex items-center justify-center gap-3">
+                    <Plus className="w-4 h-4" /> Add Another Leg
+                  </button>
+                )}
+
+                {/* Return Date (round-trip only) */}
+                {tripType === 'round-trip' && (
+                  <div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Return Date</label>
+                      <div className="relative">
+                        <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                        <input type="date" {...register('returnDate')}
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all" />
+                      </div>
+                      {errors.returnDate && <p className="text-red-500 text-xs mt-1">{errors.returnDate.message}</p>}
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Field label="Departure Date" error={errors.departureDate}>
-                    <Input icon={Calendar} register={register('departureDate')} type="date" />
-                  </Field>
-                  <Field label="Passengers">
-                    <Input icon={Users} register={register('passengers', { valueAsNumber: true })} type="number" />
-                  </Field>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Passengers</label>
+                    <div className="relative">
+                      <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                      <input type="number" {...register('passengers', { valueAsNumber: true })} min={1} max={20}
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all" />
+                    </div>
+                    {errors.passengers && <p className="text-red-500 text-xs mt-1">{errors.passengers.message}</p>}
+                  </div>
                 </div>
               </div>
 
@@ -139,16 +240,35 @@ export default function QuoteRequest() {
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-soft-silver">Executive Information</h3>
                 </div>
 
-                <Field label="Full Name" error={errors.name}>
-                  <Input icon={User} register={register('name')} placeholder="Executive/Company Name" />
-                </Field>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                    <input {...register('name')} placeholder="Executive/Company Name"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all placeholder:text-gray-300" />
+                  </div>
+                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Field label="Email Address" error={errors.email}>
-                    <Input icon={Mail} register={register('email')} placeholder="concierge@example.com" />
-                  </Field>
-                  <Field label="Phone Number" error={errors.phone}>
-                    <Input icon={Phone} register={register('phone')} placeholder="+234 ..." />
-                  </Field>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Email Address</label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                      <input {...register('email')} placeholder="concierge@example.com"
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all placeholder:text-gray-300" />
+                    </div>
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">Phone Number</label>
+                    <div className="relative">
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver pointer-events-none" />
+                      <input {...register('phone')} placeholder="+234 ..."
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all placeholder:text-gray-300" />
+                    </div>
+                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                  </div>
                 </div>
               </div>
 
@@ -169,35 +289,3 @@ export default function QuoteRequest() {
     </section>
   );
 }
-
-/* Shared form sub-components */
-function Field({ label, error, children }: { label: string; error?: any; children: React.ReactNode }) {
-  return (
-    <div className="space-y-2">
-      <label className="text-[10px] font-bold uppercase tracking-widest text-brand-soft-silver ml-1">{label}</label>
-      {children}
-      {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
-    </div>
-  );
-}
-
-function Input({ icon: Icon, register, placeholder, type = 'text' }: { icon: any; register: any; placeholder?: string; type?: string }) {
-  return (
-    <div className="relative">
-      <Icon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-soft-silver" />
-      <input {...register} type={type} placeholder={placeholder}
-        className="w-full bg-gray-50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all placeholder:text-gray-300" />
-    </div>
-  );
-}
-
-function Clock({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
-
-

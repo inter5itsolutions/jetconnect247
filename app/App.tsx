@@ -13,6 +13,8 @@ import Dashboard from './Dashboard';
 import Blog from './Blog';
 import Legal from './Legal';
 import Contact from './Contact';
+import Training from './Training';
+import TrainingPromo from '@/components/TrainingPromo';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -68,6 +70,7 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/training" element={<Training />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/privacy" element={<Legal />} />
@@ -76,6 +79,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      <TrainingPromo />
     </Router>
   );
 }
