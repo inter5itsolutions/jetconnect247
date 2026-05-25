@@ -29,7 +29,7 @@ export default function Footer() {
             <LazyImage src="/assets/logo2.png" alt="JetConnect247" className="h-4 md:h-6 w-auto" />
           </Link>
           <p className="text-brand-soft-silver text-sm leading-relaxed max-w-xs">
-            Redefining private air travel across Africa with a focus on speed, reliability, and modern luxury.
+            Redefining aviation across Africa with World-class pilot training & modern luxury private air travel built on speed and reliability
           </p>
           <div className="flex gap-4">
             {[Instagram, Twitter, Linkedin].map((Icon, i) => (
@@ -60,7 +60,7 @@ export default function Footer() {
           <ul className="space-y-4 text-sm">
             <li className="flex items-center gap-3 text-brand-soft-silver">
               <Phone className="w-4 h-4 text-brand-silver-blue shrink-0" />
-              <span>+234 (0) 800 JET 247</span>
+              <span>+234 806 938 1523</span>
             </li>
             <li className="flex items-center gap-3 text-brand-soft-silver">
               <Mail className="w-4 h-4 text-brand-silver-blue shrink-0" />

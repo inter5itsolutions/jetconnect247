@@ -114,16 +114,16 @@ export default function Training() {
               JetConnect 24/7 Pilot Training Center building world-class, simulator based pilot training
               infrastructure in Lagos and Calabar to serve airlines and pilots across West and Central Africa.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col md:flex-row gap-4 pt-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-blue-100 transition-all shadow-xl"
+                className="inline-flex items-center justify-center gap-2 w-full bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-blue-100 transition-all shadow-xl"
               >
                 Partner With Us <HandshakeIcon className="w-4 h-4" />
               </Link>
               <a
                 href="#overview"
-                className="inline-flex items-center gap-2 border border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 w-full border bg-brand-silver-blue/50 border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/10 transition-all"
               >
                 Learn More <ChevronRight className="w-4 h-4" />
               </a>
@@ -175,12 +175,12 @@ export default function Training() {
                 highlight="in West Africa"
                 description="Designed to serve regional airlines, commercial pilots, and aviation operators with advanced recurrent training reducing the need for African pilots to travel abroad for critical certifications."
               />
-              <p className="text-brand-soft-silver leading-relaxed font-light text-lg">
+              <p className="text-brand-soft-silver leading-relaxed font-light text-base md:text-lg">
                 The platform is being developed as a modern, safety-driven aviation ecosystem combining
                 advanced flight simulation technology, professional training standards, operational excellence,
                 and strategic airline partnerships under one integrated environment.
               </p>
-              <p className="text-brand-soft-silver leading-relaxed font-light text-lg">
+              <p className="text-brand-soft-silver leading-relaxed font-light text-base md:text-lg">
                 With a strong focus on reliability, regulatory alignment, and long-term industry impact,
                 JetConnect 24/7 is positioning itself to become a key aviation training hub for West
                 and Central Africa with strategic locations in Lagos and Calabar providing
@@ -193,15 +193,15 @@ export default function Training() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
+              <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
                 <LazyImage
-                  src="/assets/training-simulator.jpg"
+                  src="/assets/cabinarea.jpg"
                   wrapperClassName="w-full h-full"
                   className="w-full h-full object-cover"
                   alt="Flight Simulator Training"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 md:w-32 md:h-32 bg-brand-silver-blue/10 backdrop-blur-3xl rounded-full" />
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 md:w-32 md:h-32 bg-brand-silver-blue/10 backdrop-blur-3xl rounded-full" />
             </motion.div>
           </div>
         </div>
@@ -227,14 +227,14 @@ export default function Training() {
                 transition={{ delay: i * 0.1 }}
                 className="glass-card p-8 md:p-10 rounded-[2rem] hover:border-brand-silver-blue/40 transition-all duration-500 group"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-14 h-14 rounded-2xl bg-brand-silver-blue/10 flex items-center justify-center shrink-0 group-hover:bg-brand-silver-blue/20 transition-colors">
                     <program.icon className="w-7 h-7 text-brand-silver-blue" />
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold tracking-tight">{program.title}</h3>
-                    <p className="text-brand-soft-silver font-light leading-relaxed">{program.description}</p>
-                    <ul className="grid grid-cols-2 gap-2 pt-2">
+                    <h3 className="text-lg md:text-xl font-bold tracking-tight">{program.title}</h3>
+                    <p className="text-brand-soft-silver font-light leading-relaxed text-sm md:text-base">{program.description}</p>
+                    <ul className="grid md:grid-cols-2 gap-2 pt-2">
                       {program.features.map(f => (
                         <li key={f} className="flex items-center gap-2 text-sm text-brand-white">
                           <div className="w-1.5 h-1.5 rounded-full bg-brand-silver-blue shrink-0" />
@@ -262,9 +262,9 @@ export default function Training() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { src: '/assets/training-facility.jpg', title: 'Modern Training Hub', subtitle: 'Lagos & Calabar locations' },
-              { src: '/assets/training-instructor.jpg', title: 'Expert Instructors', subtitle: 'Experienced aviation professionals' },
-              { src: '/assets/training-team.jpg', title: 'Industry Partnerships', subtitle: 'Airlines & regulatory bodies' },
+              { src: '/assets/Embraer-ERJ145-Flight-Simulator.jpg', title: 'Modern Training Hub', subtitle: 'Lagos & Calabar locations' },
+              { src: '/assets/cabincrewq.jpg', title: 'Expert Instructors', subtitle: 'Experienced aviation professionals' },
+              { src: '/assets/virtual-aviation-training.jpg', title: 'Industry Partnerships', subtitle: 'Airlines & regulatory bodies' },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -297,7 +297,7 @@ export default function Training() {
             badge="Project Highlights"
             title="World-Class Training"
             highlight="Infrastructure"
-            description="Built with a long-term institutional vision — strengthening aviation capacity, pilot proficiency, and training accessibility across the region."
+            description="Built with a long-term institutional vision strengthening aviation capacity, pilot proficiency, and training accessibility across the region."
             align="center"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -313,8 +313,8 @@ export default function Training() {
                 <div className="w-14 h-14 rounded-2xl bg-brand-silver-blue/10 flex items-center justify-center mb-6 group-hover:bg-brand-silver-blue/20 transition-colors">
                   <item.icon className="w-7 h-7 text-brand-silver-blue" />
                 </div>
-                <h3 className="text-lg font-bold tracking-tight mb-4">{item.title}</h3>
-                <p className="text-brand-soft-silver font-light leading-relaxed">{item.description}</p>
+                  <h3 className="text-lg font-bold tracking-tight mb-4">{item.title}</h3>
+                <p className="text-brand-soft-silver text-sm md:text-base font-light leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -322,7 +322,7 @@ export default function Training() {
       </section>
 
       {/* Classroom/Training Image Banner */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-12 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <LazyImage
             src="/assets/training-classroom.jpg"
@@ -333,15 +333,15 @@ export default function Training() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white">
-            More Than a Training Center —{' '}
+          <h2 className="text-xl md:text-4xl font-bold tracking-tighter text-white">
+            More Than a Training Center{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">
               Africa's Aviation Future
             </span>
           </h2>
-          <p className="text-lg text-white/70 font-light max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-white/70 font-light max-w-2xl mx-auto">
             JetConnect 24/7 Pilot Training Center is an ambitious aviation infrastructure project focused on
-            building a world-class simulator-based pilot training ecosystem for West and Central Africa —
+            building a world-class simulator-based pilot training ecosystem for West and Central Africa
             designed to reduce the region's dependence on overseas training facilities.
           </p>
         </div>
@@ -376,39 +376,70 @@ export default function Training() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 md:py-32 px-6 md:px-12 bg-gray-50/50">
+      <section className="py-12 md:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-gray-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-brand-silver-blue via-accent-blue to-brand-silver-blue p-12 md:p-20 text-center"
+            className="relative overflow-hidden rounded-2xl md:rounded-[2.5rem] lg:rounded-[3rem] bg-gradient-to-br from-black via-black/90 to-brand-silver-blue p-6 md:p-10 lg:p-16 text-center shadow-2xl"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
-            <div className="relative z-10 max-w-3xl mx-auto space-y-8">
-              <GraduationCap className="w-16 h-16 text-white/80 mx-auto" />
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_60%)]" />
+            <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+            
+            <div className="relative z-10 max-w-4xl mx-auto space-y-6 md:space-y-8">
+              {/* Icon with responsive sizing */}
+              <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-2xl md:rounded-3xl backdrop-blur-sm mx-auto mb-2">
+                <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-white" />
+              </div>
+              
+              {/* Heading with better text wrapping */}
+              <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight md:leading-tight lg:leading-tight">
                 Interested in Partnering, Investing, or Supporting the Project?
               </h2>
-              <p className="text-lg text-white/70 font-light max-w-2xl mx-auto">
+              
+              {/* Description with better readability */}
+              <p className="text-base md:text-lg lg:text-xl text-white/80 font-light max-w-2xl mx-auto px-2 leading-relaxed">
                 Connect with us to explore collaboration opportunities and become part of building one of
                 Africa's most ambitious aviation training initiatives.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 pt-4">
+              
+              {/* Button group - improved for mobile */}
+              <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-5 pt-2 md:pt-6">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-sm hover:bg-gray-100 transition-all shadow-xl"
+                  className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  Get in Touch
+                  <PhoneCall className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:scale-110" />
+                  <span>Get in Touch</span>
                 </Link>
+                
                 <a
                   href="tel:+234800JET247"
-                  className="inline-flex items-center gap-2 border-2 border-white/40 text-white px-10 py-4 rounded-full font-bold text-sm hover:bg-white/10 transition-all"
+                  className="group inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base transition-all hover:bg-white/10 hover:border-white/60 hover:scale-105 active:scale-95"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  +234 (0) 800 JET 247
+                  <PhoneCall className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:scale-110" />
+                  <span>+234 806 938 1523</span>
                 </a>
+              </div>
+              
+              {/* Optional: Trust indicators for desktop */}
+              <div className="hidden md:flex justify-center items-center gap-6 pt-6 text-white/50 text-sm">
+                <span className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-white/30 rounded-full"></div>
+                  Strategic Partnerships
+                </span>
+                <span className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-white/30 rounded-full"></div>
+                  Investment Opportunities
+                </span>
+                <span className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-white/30 rounded-full"></div>
+                  Technical Support
+                </span>
               </div>
             </div>
           </motion.div>
