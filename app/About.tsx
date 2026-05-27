@@ -22,12 +22,13 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight border-l-4 border-brand-silver-blue pl-6">Mission & Vision</h2>
+            <h2 className="text-3xl font-bold tracking-tight border-l-4 border-brand-silver-blue pl-6">Our Mission</h2>
             <p className="text-brand-soft-silver leading-relaxed font-light text-lg">
-              Our mission is to provide uncompromised executive mobility. We blend cutting-edge aviation technology with deep regional expertise to deliver a transport experience that prioritizes speed, reliability, and modern African luxury.
+              To deliver seamless aviation access today while building a connected pilot training and operations ecosystem for the future.
             </p>
+            <h2 className="text-3xl font-bold tracking-tight border-l-4 border-brand-silver-blue pl-6">Our Vision</h2>
             <p className="text-brand-soft-silver leading-relaxed font-light text-lg">
-              We envision a future where borders are seamless and time is optimized, empowering leaders and organizations to reach their full potential through elite air travel.
+              To become the platform that powers aviation access globally by aligning talent, aircraft, and operations.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-10">

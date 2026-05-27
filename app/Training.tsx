@@ -51,18 +51,6 @@ const trainingPrograms = [
     description: 'Comprehensive training pathways for commercial pilots including APS MCC, MCC-JOC, and airline-specific induction programs.',
     features: ['APS MCC Certification', 'Crew Resource Management', 'Airline Induction Training', 'Jet Orientation'],
   },
-  {
-    icon: Wrench,
-    title: 'Technical & Maintenance Training',
-    description: 'Specialized training for aviation maintenance engineers and technical personnel aligned with global regulatory standards.',
-    features: ['Aircraft Systems Training', 'Maintenance Procedures', 'Regulatory Compliance', 'Safety Management'],
-  },
-  {
-    icon: Headphones,
-    title: 'Crew & Operations Training',
-    description: 'Integrated training solutions for cabin crew, dispatchers, and operations personnel to ensure end-to-end operational excellence.',
-    features: ['Cabin Crew Training', 'Dispatch Training', 'Operations Management', 'Safety & Emergency Drills'],
-  },
 ];
 
 const partnerTypes = [
@@ -112,7 +100,7 @@ export default function Training() {
             </h1>
             <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-2xl">
               JetConnect 24/7 Pilot Training Center building world-class, simulator based pilot training
-              infrastructure in Lagos and Calabar to serve airlines and pilots across West and Central Africa.
+              infrastructure in Lagos and Abuja to serve airlines and pilots across West and Central Africa.
             </p>
             <div className="flex flex-col md:flex-row gap-4 pt-4">
               <Link
@@ -262,7 +250,7 @@ export default function Training() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { src: '/assets/Embraer-ERJ145-Flight-Simulator.jpg', title: 'Modern Training Hub', subtitle: 'Lagos & Calabar locations' },
+              { src: '/assets/Embraer-ERJ145-Flight-Simulator.png', title: 'Modern Training Hub', subtitle: 'Lagos & Calabar locations' },
               { src: '/assets/cabincrewq.jpg', title: 'Expert Instructors', subtitle: 'Experienced aviation professionals' },
               { src: '/assets/virtual-aviation-training.jpg', title: 'Industry Partnerships', subtitle: 'Airlines & regulatory bodies' },
             ].map((item, i) => (

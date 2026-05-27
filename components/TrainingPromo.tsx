@@ -11,7 +11,7 @@ export default function TrainingPromo() {
 
   useEffect(() => {
     if (isTrainingPage || dismissed) return;
-    const timer = setTimeout(() => setShow(true), 20000);
+    const timer = setTimeout(() => setShow(true), 10000);
     return () => clearTimeout(timer);
   }, [isTrainingPage, dismissed]);
 
@@ -25,7 +25,7 @@ export default function TrainingPromo() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-          className="fixed right-4 bottom-32 z-50 max-w-xs"
+          className="fixed right-4 bottom-32 z-50 max-w-xs md:max-w-sm"
         >
           <div className="relative bg-white border border-gray-200 rounded-2xl shadow-2xl p-5">
             <button
@@ -41,12 +41,12 @@ export default function TrainingPromo() {
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-brand-silver-blue">New</p>
-                <h4 className="text-sm font-bold tracking-tight mt-0.5">Pilot Training Center</h4>
+                <h4 className="text-sm font-bold tracking-tight mt-0.5">JC 24/7 - Pilot Training Initiative</h4>
               </div>
             </div>
 
             <p className="text-xs text-brand-soft-silver leading-relaxed mb-4">
-              West Africa's first commercial aviation training facility. Opening 2031 in Lagos & Calabar.
+              West Africa's first commercial aviation training facility. Opening 2031 in Lagos - Abuja.
             </p>
 
             <Link
