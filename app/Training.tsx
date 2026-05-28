@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { GraduationCap, Monitor, Award, Clock, Shield, Globe, Building2, HandshakeIcon, ArrowRight, ChevronRight, PhoneCall, Target, TrendingUp, Users, MapPin, BarChart3, Plane, BookOpen, Wrench, Headphones } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import LazyImage from '@/components/LazyImage';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import TrainingModal from '@/components/TrainingModal';
 
 const highlights = [
   {
@@ -62,9 +64,12 @@ const partnerTypes = [
 ];
 
 export default function Training() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section>
       <WhatsAppButton />
+      <TrainingModal isOpen={showModal} onClose={() => setShowModal(false)} />
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] pt-32 flex items-center overflow-hidden">
@@ -103,12 +108,12 @@ export default function Training() {
               infrastructure in Lagos and Abuja to serve airlines and pilots across West and Central Africa.
             </p>
             <div className="flex flex-col md:flex-row gap-4 pt-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 w-full bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-blue-100 transition-all shadow-xl"
+              <button
+                onClick={() => setShowModal(true)}
+                className="inline-flex items-center justify-center gap-2 w-full bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-blue-100 transition-all shadow-xl cursor-pointer"
               >
                 Partner With Us <HandshakeIcon className="w-4 h-4" />
-              </Link>
+              </button>
               <a
                 href="#overview"
                 className="inline-flex items-center justify-center gap-2 w-full border bg-brand-silver-blue/50 border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/10 transition-all"
@@ -397,13 +402,13 @@ export default function Training() {
               
               {/* Button group - improved for mobile */}
               <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-5 pt-2 md:pt-6">
-                <Link
-                  to="/contact"
-                  className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95"
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 cursor-pointer"
                 >
                   <PhoneCall className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:scale-110" />
                   <span>Get in Touch</span>
-                </Link>
+                </button>
                 
                 <a
                   href="tel:+234800JET247"

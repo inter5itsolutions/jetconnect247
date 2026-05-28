@@ -25,7 +25,7 @@ export default function CTAButton() {
                 <div className="w-6 h-6 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white/10 transition-all">
                   <Phone className="w-3 h-3 md:w-5 md:h-5" />
                 </div>
-                +234 806 938 1523
+                +234 913 236 0363
               </a>
             </div>
           </motion.div>

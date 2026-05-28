@@ -15,6 +15,7 @@ import Legal from './Legal';
 import Contact from './Contact';
 import Training from './Training';
 import TrainingPromo from '@/components/TrainingPromo';
+import TrainingFooter from '@/components/TrainingFooter';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,6 +25,11 @@ function ScrollToTop() {
   }, [pathname]);
 
   return null;
+}
+
+function FooterSwitch() {
+  const { pathname } = useLocation();
+  return pathname === '/training' ? <TrainingFooter /> : <Footer />;
 }
 
 const SPLASH_MIN_MS = 2500;
@@ -77,7 +83,7 @@ export default function App() {
             <Route path="/terms" element={<Legal />} />
           </Routes>
         </main>
-        <Footer />
+        <FooterSwitch />
       </div>
       <TrainingPromo />
     </Router>
