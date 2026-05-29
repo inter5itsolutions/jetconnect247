@@ -46,7 +46,7 @@ export default function TrainingPromo() {
             </div>
 
             <p className="text-xs text-brand-soft-silver leading-relaxed mb-4">
-              West Africa's first commercial aviation training facility. Opening 2031 in Lagos - Abuja.
+              Africa's Next-Gen Commercial Aviation Training Facility.
             </p>
 
             <Link

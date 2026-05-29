@@ -97,7 +97,7 @@ export default function Training() {
               Pilot Training Center
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
-              West Africa's First{' '}
+              Africa's Next-Gen{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">
                 Commercial Aviation
               </span>{' '}
@@ -125,32 +125,6 @@ export default function Training() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-16 md:py-20 px-6 md:px-12 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { label: 'Training Locations', value: '2', sub: 'Lagos & Calabar' },
-              { label: 'Target Completion', value: '2031', sub: 'Phase 1 Operational' },
-              { label: 'Project Investment', value: '$112M+', sub: 'Infrastructure Build-Out' },
-              { label: 'Simulator Capacity', value: '24/7', sub: 'Full-Flight Simulators' },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-3xl md:text-5xl font-bold tracking-tighter text-brand-silver-blue">{stat.value}</p>
-                <p className="text-lg font-bold mt-2">{stat.label}</p>
-                <p className="text-sm text-brand-soft-silver font-light">{stat.sub}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Overview with Image */}
       <section id="overview" className="py-24 md:py-32 px-6 md:px-12 bg-white">
@@ -327,10 +301,10 @@ export default function Training() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">
           <h2 className="text-xl md:text-4xl font-bold tracking-tighter text-white">
-            More Than a Training Center{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">
+            The Future of Aviation Training in Africa
+            {/* <span className="text-transparent  bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">
               Africa's Aviation Future
-            </span>
+            </span> */}
           </h2>
           <p className="text-sm md:text-lg text-white/70 font-light max-w-2xl mx-auto">
             JetConnect 24/7 Pilot Training Center is an ambitious aviation infrastructure project focused on

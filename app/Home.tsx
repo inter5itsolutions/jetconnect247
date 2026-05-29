@@ -96,7 +96,8 @@ export default function Home() {
               </h1>
 
               <p className="text-md md:text-xl text-white font-light leading-relaxed max-w-2xl">
-                Seamless private jet charter across Africa and beyond  where every mission is executed with precision, privacy, and purpose.
+                {/* Seamless private jet charter across Africa and beyond  where every mission is executed with precision, privacy, and purpose. */}
+                Modern aviation platform delivering charter access, operational support, and next-generation pilot training.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">

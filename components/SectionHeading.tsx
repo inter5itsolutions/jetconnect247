@@ -18,7 +18,7 @@ export default function SectionHeading({ badge, title, highlight, description, a
       {badge && (
         <span className="text-brand-silver-blue text-xs font-bold uppercase tracking-[0.3em]">{badge}</span>
       )}
-      <h2 className="text-2xl md:text-6xl font-bold tracking-tighter">
+      <h2 className="text-2xl mt-6 md:text-6xl font-bold tracking-tighter">
         {title}{highlight && <><br /><span className="text-luxury">{highlight}</span></>}
       </h2>
       {description && (
