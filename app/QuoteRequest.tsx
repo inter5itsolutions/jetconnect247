@@ -3,10 +3,21 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'motion/react';
 import { useState, useCallback } from 'react';
-import { CheckCircle, Plane, ArrowRight, User, Mail, Phone, MapPin, Calendar, Users, Shield, Plus, Trash2 } from 'lucide-react';
+import { CheckCircle, Plane, ArrowRight, User, Mail, Phone, MapPin, Calendar, Users, Shield, Plus, Trash2, Loader2 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import AirportInput from '@/components/AirportInput';
+import { sendEmail, TEMPLATE_CONTACT } from '@/lib/email';
+import airports from '@/lib/data/airports.json';
+
+const airportMap = new Map<string, { i: string; n: string; c: string; o: string }>(
+  (airports as any[]).map(a => [a.i, a])
+);
+
+function getAirportName(iata: string): string {
+  const a = airportMap.get(iata.toUpperCase());
+  return a ? `${a.n}, ${a.c}, ${a.o} (${a.i})` : iata;
+}
 
 const legSchema = z.object({
   departure: z.string().min(3, 'Departure airport is required'),
@@ -59,6 +70,7 @@ function Clock({ className }: { className?: string }) {
 
 export default function QuoteRequest() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const { control, register, handleSubmit, formState: { errors }, watch, setValue } = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteSchema),
@@ -73,8 +85,29 @@ export default function QuoteRequest() {
 
   const tripType = watch('tripType');
 
-  const onSubmit = useCallback(() => {
-    setTimeout(() => setIsSubmitted(true), 1500);
+  const onSubmit = useCallback(async (data: QuoteFormValues) => {
+    setIsSending(true);
+    const legsStr = data.legs.map(l =>
+      `${getAirportName(l.departure)} \u2192 ${getAirportName(l.destination)} on ${l.date}`
+    ).join(' | ');
+    try {
+      await sendEmail(TEMPLATE_CONTACT, {
+        from_name: data.name,
+        from_email: data.email,
+        from_phone: data.phone,
+        subject: 'Quote Request',
+        message: '',
+        trip_type: data.tripType.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        legs: legsStr,
+        return_date: data.returnDate || 'N/A',
+        passengers: String(data.passengers),
+        notes: data.notes || 'N/A',
+      });
+    } catch (err: any) {
+      alert(`Sorry your request failed with status code: ${err.message}`);
+    }
+    setIsSending(false);
+    setIsSubmitted(true);
   }, []);
 
   if (isSubmitted) {
@@ -120,7 +153,7 @@ export default function QuoteRequest() {
 
           <div className="p-8 rounded-3xl bg-gray-50 border border-gray-200 space-y-4">
             <p className="text-xs font-bold uppercase tracking-widest text-brand-silver-blue">Instant Contact</p>
-            <p className="text-2xl font-bold">+234 (0) 800 JET 247</p>
+            <p className="text-2xl font-bold">+234 913 236 0363</p>
             <p className="text-xs text-brand-soft-silver leading-relaxed italic">{'"Providing uncompromised reliability for Africa\'s most discerning travelers."'}</p>
           </div>
         </div>
@@ -273,9 +306,13 @@ export default function QuoteRequest() {
               </div>
 
               <div className="pt-10 border-t border-gray-100">
-                <button type="submit" className="w-full bg-brand-white text-white py-6 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:bg-brand-silver-blue transition-all shadow-xl flex items-center justify-center gap-4 group">
-                  Confirm Mission Parameters
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                <button type="submit" disabled={isSending}
+                  className="w-full bg-brand-white text-white py-6 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:bg-brand-silver-blue transition-all shadow-xl flex items-center justify-center gap-4 group disabled:opacity-60">
+                  {isSending ? (
+                    <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
+                  ) : (
+                    <><ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" /> Submit Request</>
+                  )}
                 </button>
                 <div className="flex items-center justify-center gap-2 mt-6 text-brand-soft-silver uppercase text-[9px] tracking-[0.3em]">
                   <Shield className="w-3 h-3" />

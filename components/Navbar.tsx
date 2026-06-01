@@ -43,7 +43,7 @@ export default function Navbar() {
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12 shadow-sm',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 lg:px-12',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm'
             : isHome
@@ -51,36 +51,27 @@ export default function Navbar() {
               : 'bg-white border-b border-gray-100'
         )}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between h-20 md:h-22">
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-22">
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
             <img
               src="/assets/logo2.png"
               alt="JetConnect247"
               className={cn(
-                'h-4 md:h-6 w-auto transition-all duration-500',
+                'h-5 lg:h-6 w-auto transition-all duration-500',
                 atTop && isHome ? 'brightness-0 invert' : ''
               )}
             />
-            <div className="flex flex-col leading-tight">
-             
-              {/* <span className={cn(
-                'text-[7px] md:text-[9px] tracking-[0.2em] uppercase font-medium transition-colors duration-500',
-                atTop && isHome ? 'text-white/60' : 'text-gray-400'
-              )}>
-                Aviation Excellence
-              </span> */}
-            </div>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map(link => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) => cn(
-                  'relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300',
+                  'relative px-3 xl:px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300',
                   isActive
                     ? cn(
                         'text-brand-silver-blue',
@@ -111,34 +102,34 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile/Tablet toggle */}
           <button
             className={cn(
-              'md:hidden relative z-50 p-2 rounded-xl transition-colors',
+              'lg:hidden relative z-50 p-2.5 rounded-xl transition-colors active:scale-90',
               isOpen ? 'text-gray-900' : atTop && isHome ? 'text-white' : 'text-gray-700'
             )}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle navigation"
           >
-            <div className="relative w-6 h-6">
+            <div className="relative w-6 h-5">
               <motion.span
-                animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                className="absolute left-0 top-1 w-full h-0.5 rounded-full bg-current"
+                animate={isOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+                className="absolute left-0 top-0 w-full h-0.5 rounded-full bg-current origin-center"
               />
               <motion.span
-                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="absolute left-0 top-2.5 w-full h-0.5 rounded-full bg-current"
+                animate={isOpen ? { opacity: 0, x: -8 } : { opacity: 1, x: 0 }}
+                className="absolute left-0 top-2.25 w-full h-0.5 rounded-full bg-current"
               />
               <motion.span
-                animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                className="absolute left-0 bottom-1 w-full h-0.5 rounded-full bg-current"
+                animate={isOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+                className="absolute left-0 bottom-0 w-full h-0.5 rounded-full bg-current origin-center"
               />
             </div>
           </button>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
+      {/* Mobile/Tablet overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -146,55 +137,55 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
           >
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-white"
+              className="absolute inset-0 bg-white/98 backdrop-blur-sm"
             />
 
             {/* Menu content */}
-            <div className="relative h-full flex flex-col px-6 pt-28 pb-10">
-              <nav className="flex-1 flex flex-col gap-2 max-w-lg mx-auto w-full">
+            <div className="relative h-full flex flex-col px-6 pt-24 pb-8 overflow-y-auto">
+              <nav className="flex-1 flex flex-col gap-1.5 max-w-lg mx-auto w-full">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i }}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.04 * i, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <NavLink
                       to={link.path}
                       onClick={() => setIsOpen(false)}
                       className={({ isActive }) => cn(
-                        'flex items-center justify-between px-6 py-4 rounded-2xl text-lg font-medium transition-all group',
+                        'flex items-center justify-between px-5 py-3.5 rounded-xl text-base font-medium transition-all group',
                         isActive
                           ? 'bg-brand-silver-blue/10 text-brand-silver-blue'
                           : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                       )}
                     >
                       {link.name}
-                      <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-brand-silver-blue transition-colors" />
+                      <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-brand-silver-blue transition-colors" />
                     </NavLink>
                   </motion.div>
                 ))}
               </nav>
 
-              <div className="max-w-lg mx-auto w-full space-y-4 pt-6 border-t border-gray-100">
+              <div className="max-w-lg mx-auto w-full space-y-3 pt-6 border-t border-gray-100 mt-6">
                 <Link
                   to="/quote"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-3 w-full bg-brand-silver-blue text-white py-4 rounded-2xl font-bold text-sm tracking-wide hover:bg-accent-blue transition-all shadow-lg shadow-brand-silver-blue/20"
+                  className="flex items-center justify-center gap-3 w-full bg-brand-silver-blue text-white py-3.5 rounded-xl font-bold text-sm tracking-wide hover:bg-accent-blue transition-all shadow-lg shadow-brand-silver-blue/20 active:scale-[0.98]"
                 >
                   <PhoneCall className="w-4 h-4" />
                   Request a Quote
                 </Link>
                 <a
                   href="tel:+234800JET247"
-                  className="flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                  className="flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors py-2"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
                   +234 (0) 800 JET 247

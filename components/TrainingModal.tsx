@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, GraduationCap, Building2, HandshakeIcon, UserCheck, HelpCircle } from 'lucide-react';
+import { X, Send, GraduationCap, Building2, HandshakeIcon, UserCheck, HelpCircle, Loader2 } from 'lucide-react';
+import { sendEmail, TEMPLATE_TRAINING } from '@/lib/email';
 
 interface TrainingModalProps {
   isOpen: boolean;
@@ -24,25 +25,29 @@ export default function TrainingModal({ isOpen, onClose }: TrainingModalProps) {
     interest: '',
     message: '',
   });
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Training Inquiry - ${formData.interest ? interestOptions.find(o => o.value === formData.interest)?.label : 'General'} - ${formData.organization || formData.name}`;
-    const body = [
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone}`,
-      `Organization: ${formData.organization}`,
-      `Interest: ${interestOptions.find(o => o.value === formData.interest)?.label || 'Not specified'}`,
-      '',
-      `Message:`,
-      formData.message,
-    ].join('\n');
-    window.location.href = `mailto:info@jetconnect247.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsSending(true);
+    const interestLabel = interestOptions.find(o => o.value === formData.interest)?.label || 'Not specified';
+    try {
+      await sendEmail(TEMPLATE_TRAINING, {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone,
+        organization: formData.organization,
+        interest: interestLabel,
+        message: formData.message,
+      });
+    } catch (err: any) {
+      alert(`Sorry your request failed with status code: ${err.message}`);
+    }
+    setIsSending(false);
     setFormData({ name: '', email: '', phone: '', organization: '', interest: '', message: '' });
     onClose();
   }, [formData, onClose]);
@@ -124,10 +129,13 @@ export default function TrainingModal({ isOpen, onClose }: TrainingModalProps) {
                   className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 focus:border-brand-silver-blue focus:ring-1 focus:ring-brand-silver-blue outline-none transition-all placeholder:text-gray-300 resize-none" />
               </div>
 
-              <button type="submit"
-                className="w-full bg-brand-white text-white py-4 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:bg-brand-silver-blue transition-all shadow-xl flex items-center justify-center gap-3 group">
-                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                Send Inquiry
+              <button type="submit" disabled={isSending}
+                className="w-full bg-brand-white text-white py-4 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:bg-brand-silver-blue transition-all shadow-xl flex items-center justify-center gap-3 group disabled:opacity-60">
+                {isSending ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</>
+                ) : (
+                  <><Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" /> Send Inquiry</>
+                )}
               </button>
             </form>
           </motion.div>

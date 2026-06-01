@@ -295,7 +295,7 @@ export default function Home() {
             align="center"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-4 md:py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-4 md:py-8">
             {services.map((service) => (
               <div key={service.title} className="group relative h-[400px] rounded-3xl overflow-hidden glass-card hover:border-brand-silver-blue/30 transition-all">
                 <LazyImage src={service.img} wrapperClassName="absolute inset-0" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={service.title} />

@@ -80,13 +80,13 @@ export default function AircraftCard({ aircraft, index = 0, featured }: Props) {
             <div className="flex flex-col md:flex-row gap-4">
               <Link
                 to={`/fleet/${aircraft.slug}`}
-                className="flex-1 bg-brand-white text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue transition-all text-center"
+                className="flex-1 bg-brand-white text-white py-3 px-2 lg:py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-brand-silver-blue transition-all text-center"
               >
                 View Specifications
               </Link>
               <Link
                 to="/quote"
-                className="bg-gray-50 border border-gray-200 text-brand-white px-6 py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all flex items-center justify-center"
+                className="bg-gray-50 border border-gray-200 text-brand-white py-3 px-1 lg:px-6 lg:py-4 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all flex items-center justify-center"
               >
                 Quote
               </Link>

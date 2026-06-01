@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Instagram, MessageCircle } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { sendEmail, TEMPLATE_CONTACT } from '@/lib/email';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Full name is required'),
@@ -40,7 +41,7 @@ const offices = [
 
 const contactMethods = [
   { icon: Mail, label: 'Email', value: 'fly@jetconnect247.com', href: 'mailto:fly@jetconnect247.com' },
-  { icon: Phone, label: 'Phone', value: '+234 806 938 1523', href: 'tel:+2348069381523' },
+  { icon: Phone, label: 'Phone', value: '+234 913 236 0363', href: 'tel:+2348069381523' },
 ];
 
 const socialLinks = [
@@ -60,26 +61,20 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSending(true);
     try {
-      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          service_id: 'service_default',
-          template_id: 'template_default',
-          user_id: 'user_default',
-          template_params: {
-            from_name: data.name,
-            from_email: data.email,
-            from_phone: data.phone,
-            subject: data.subject,
-            message: data.message,
-          },
-        }),
+      await sendEmail(TEMPLATE_CONTACT, {
+        from_name: data.name,
+        from_email: data.email,
+        from_phone: data.phone,
+        subject: 'Contact Us - ' + data.subject,
+        message: data.message,
+        trip_type: '',
+        legs: '',
+        return_date: '',
+        passengers: '',
+        notes: '',
       });
-    } catch {
-      // EmailJS fallback — open default mail client
-      const mailto = `mailto:fly@jetconnect247.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\n\n${data.message}`)}`;
-      window.open(mailto, '_blank');
+    } catch (err: any) {
+      alert(`Sorry your request failed with status code: ${err.message}`);
     }
     setIsSending(false);
     setIsSubmitted(true);

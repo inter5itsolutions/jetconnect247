@@ -194,7 +194,7 @@ export default function Training() {
                 transition={{ delay: i * 0.1 }}
                 className="glass-card p-8 md:p-10 rounded-[2rem] hover:border-brand-silver-blue/40 transition-all duration-500 group"
               >
-                <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex flex-col lg:flex-row gap-6">
                   <div className="w-14 h-14 rounded-2xl bg-brand-silver-blue/10 flex items-center justify-center shrink-0 group-hover:bg-brand-silver-blue/20 transition-colors">
                     <program.icon className="w-7 h-7 text-brand-silver-blue" />
                   </div>

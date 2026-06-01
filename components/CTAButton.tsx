@@ -13,12 +13,12 @@ export default function CTAButton() {
             viewport={{ once: true }}
             className="relative z-10 space-y-8"
           >
-            <h2 className="text-2xl md:text-7xl font-bold tracking-tighter text-white">Your Flight. Your Terms.</h2>
-            <p className="text-white/80 text-md md:text-xl font-light  mx-auto">
+            <h2 className="text-2xl md:text-4xl lg:text-7xl font-bold tracking-tighter text-white">Your Flight. Your Terms.</h2>
+            <p className="text-white/80 text-md md:text-lg lg:text-xl font-light  mx-auto">
               Ready to experience the next level of private aviation? Our team is standing by 24/7 to curate your next mission.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-              <Link to="/quote" className="w-full sm:w-auto bg-white text-brand-white md:px-12 py-3 md:py-5 rounded-full font-bold  uppercase tracking-widest hover:bg-gray-100 transition-all">
+              <Link to="/quote" className="w-full sm:w-auto bg-white text-brand-white px-5 lg:px-12 py-3 lg:py-5 rounded-full font-bold  uppercase tracking-widest hover:bg-gray-100 transition-all">
                 Request a Quote
               </Link>
               <a href="tel:+234800JET247" className="flex items-center gap-4 text-white font-bold md:text-lg group">
