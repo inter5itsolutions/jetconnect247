@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Twitter, Linkedin, Mail, Phone, MapPin, GraduationCap } from 'lucide-react';
+import { Linkedin, Instagram, MessageCircle, Mail, Phone, MapPin, GraduationCap } from 'lucide-react';
 import LazyImage from '@/components/LazyImage';
+
+const socials = [
+  { icon: Linkedin, href: 'https://linkedin.com/company/jetconnect247', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://instagram.com/jet_connect247', label: 'Instagram' },
+  { icon: MessageCircle, href: 'https://wa.me/2348069381523', label: 'WhatsApp' },
+];
 
 const footerLinks = {
   training: [
@@ -38,8 +44,11 @@ export default function TrainingFooter() {
             West Africa's first commercial aviation training facility building world-class pilot training infrastructure in Lagos and Abuja.
           </p>
           <div className="flex gap-3 lg:gap-4">
-            {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-              <a key={i} href="#" className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-brand-silver-blue transition-colors group">
+            {socials.map(({ icon: Icon, href, label }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-brand-silver-blue transition-colors group"
+                aria-label={label}
+              >
                 <Icon className="w-4 h-4 lg:w-5 lg:h-5 text-brand-soft-silver group-hover:text-white" />
               </a>
             ))}

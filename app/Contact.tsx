@@ -35,7 +35,7 @@ const offices = [
       'Office - C1 - 1F - SF7404,',
       'Ajman Free Zone, Ajman, UAE.',
     ],
-    icon: MapPin,
+    icon: MapPin, 
   },
 ];
 
