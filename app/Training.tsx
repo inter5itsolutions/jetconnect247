@@ -104,8 +104,8 @@ export default function Training() {
               Training Facility
             </h1>
             <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-2xl">
-              JetConnect 24/7 Pilot Training Center building world-class, simulator based pilot training
-              infrastructure in Lagos and Abuja to serve airlines and pilots across West and Central Africa.
+              JetConnect 24/7 is building a world-class, simulator-based pilot training infrastructure 
+              in Lagos and Abuja to serve airlines and pilots across Africa
             </p>
             <div className="flex flex-col md:flex-row gap-4 pt-4">
               <button
@@ -229,9 +229,9 @@ export default function Training() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { src: '/assets/Embraer-ERJ145-Flight-Simulator.png', title: 'Modern Training Hub', subtitle: 'Lagos & Calabar locations' },
-              { src: '/assets/cabincrewq.jpg', title: 'Expert Instructors', subtitle: 'Experienced aviation professionals' },
-              { src: '/assets/virtual-aviation-training.jpg', title: 'Industry Partnerships', subtitle: 'Airlines & regulatory bodies' },
+              { src: '/assets/Embraer-ERJ145-Flight-Simulator.png', title: 'Modern Training Hub', subtitle: 'Lagos & Abuja' },
+              { src: '/assets/cabincrewq.jpg', title: 'Expert Instructors', subtitle: 'Experienced Aviation Professionals' },
+              { src: '/assets/virtual-aviation-training.jpg', title: 'Industry Partnerships', subtitle: 'Airlines Operators & Regulators' },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
