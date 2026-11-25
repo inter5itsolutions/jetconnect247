@@ -123,7 +123,7 @@ import Maintenance from './Maintenance';
 /*  Optional: override per deployment with an env var instead of       */
 /*  editing code (Vite):  VITE_MAINTENANCE_MODE=false                  */
 /* ------------------------------------------------------------------ */
-const MAINTENANCE_DEFAULT = true;
+const MAINTENANCE_DEFAULT = false;
 
 const MAINTENANCE_MODE: boolean = (() => {
   return MAINTENANCE_DEFAULT;
